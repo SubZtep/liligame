@@ -1,5 +1,8 @@
 {
   "files.associations": {
     ".*e*rc": "yaml"
-  }
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "window.title": "${dirty}(⁄ ⁄•⁄ω⁄•⁄ ⁄)${dirty} ${activeEditorMedium}",
+  "workbench.colorTheme": "Red"
 }
