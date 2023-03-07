@@ -1,6 +1,5 @@
+import { WS_URL } from "../config"
 import { html, css, createWCElements } from "../lib/dom"
-
-const WS_URL = "ws://localhost:1313"
 
 const template = html`<div class="box"></div>`
 
@@ -9,12 +8,13 @@ const style = css`
     width: 320px;
     height: 200px;
     padding: 10px;
+    white-space: pre;
     background: linear-gradient(to bottom, green 25%, brown 100%);
     box-shadow: inset 0 0 15px #000;
-    border-radius: 4px;
     border: 3px solid black;
-    font-weight: 250;
+    border-radius: 4px;
     font-size: 1.2rem;
+    font-weight: 250;
     color: yellow;
   }
 `
@@ -50,19 +50,14 @@ class WcDebug extends HTMLElement {
     })
 
     this.#socket.addEventListener("message", ({ data }) => {
-      this.shadowRoot!.querySelector(".box")!.innerHTML = data
-      // let msg: Packet
-      // try {
-      //   msg = JSON.parse(data)
-      // } catch {
-      //   return console.log("Invalid message", data)
-      // }
-      // console.log("Message", msg)
+      let msg: Packet
+      try {
+        msg = JSON.parse(data)
+      } catch {
+        return console.log("Invalid message", data)
+      }
+      this.shadowRoot!.querySelector(".box")!.innerHTML = JSON.stringify(msg, null, 2)
     })
-  }
-
-  connectedCallback() {
-    this.shadowRoot!.querySelector(".box")!.innerHTML = "Hello, World!"
   }
 
   disconnectedCallback() {

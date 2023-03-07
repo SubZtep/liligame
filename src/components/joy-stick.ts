@@ -1,11 +1,12 @@
+import { WS_URL } from "../config"
 import Hammer from "hammerjs"
 import debounce from "lodash/debounce"
 import throttle from "lodash/throttle"
 import VanillaTilt from "vanilla-tilt"
 import { html, css, createWCElements } from "../lib/dom"
 
-// x@ts-expect-error
-// delete (Hammer.defaults as HammerDefaults).cssProps.userSelect
+// @ts-expect-error
+delete (Hammer.defaults as HammerDefaults).cssProps.userSelect
 
 const template = html`
   <div class="device-wrapper">
@@ -89,6 +90,8 @@ let startX = 0
 let startY = 0
 
 class JoyStick extends HTMLElement {
+  #socket: WebSocket
+
   static get observedAttributes() {
     return ["tilt"]
   }
@@ -96,17 +99,17 @@ class JoyStick extends HTMLElement {
   constructor() {
     super()
     this.attachShadow({ mode: "open" }).append(...Array.from(createWCElements({ template, style })))
+    this.#socket = new WebSocket(WS_URL)
   }
 
   connectedCallback() {
-    const shadowRoot = this.shadowRoot!
-    // eventsEl = shadowRoot.querySelector("socket-events")!
-    const joyEl = shadowRoot.querySelector<HTMLElement>("#hitarea")!
-    const setStartPos = setStartPosShadow(shadowRoot)
+    const root = this.shadowRoot!
+    const joyEl = root.querySelector<HTMLElement>("#hitarea")!
+    const setStartPos = setStartPosShadow(root)
     setStartPos()
     window.addEventListener("resize", debounce(setStartPos, 100))
 
-    VanillaTilt.init(shadowRoot.querySelector<HTMLElement>(".device-screen")!, {
+    VanillaTilt.init(root.querySelector<HTMLElement>(".device-screen")!, {
       max: 5,
       speed: 250,
       glare: true,
@@ -119,7 +122,7 @@ class JoyStick extends HTMLElement {
     let ticking = false
     let transform: CSSRuleList | any
     let timer: NodeJS.Timeout
-    const norm = normShadow(shadowRoot)
+    const norm = normShadow(root)
 
     const hammer = new Hammer.Manager(joyEl)
 
@@ -147,6 +150,8 @@ class JoyStick extends HTMLElement {
         } else {
           const x = norm(ev.deltaX) * 10
           const y = -norm(ev.deltaY) * 10
+
+          this.#socket.send(JSON.stringify({ x, y }))
         }
       }, 1_000 / 30)
     )
@@ -268,11 +273,11 @@ class JoyStick extends HTMLElement {
 
     resetElement()
   }
+
+  disconnectedCallback() {
+    this.#socket.close()
+  }
 }
-
-customElements.define("joy-stick", JoyStick)
-
-export {}
 
 function setStartPosShadow(doc: ShadowRoot) {
   return () => {
@@ -295,3 +300,7 @@ function normShadow(doc: ShadowRoot) {
     return +((v / size) * 2) // .toFixed(5)
   }
 }
+
+customElements.define("joy-stick", JoyStick)
+
+export {}

@@ -8,6 +8,10 @@ interface Packet {
 class WcClient extends HTMLElement {
   #socket: WebSocket
 
+  static get observedAttributes() {
+    return ["message"]
+  }
+
   constructor() {
     super()
 
