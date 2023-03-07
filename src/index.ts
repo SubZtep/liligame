@@ -1,34 +1,8 @@
-const socket = new WebSocket("ws://localhost:1313")
+import "./components/joy-stick"
+import "./components/wc-client"
+import "./components/wc-debug"
+import "./styles/index.css"
 
-interface Packet {
-  type: string
-  payload: any
-}
-
-const send = (packet: Packet) => {
-  socket.send(JSON.stringify(packet))
-}
-
-socket.addEventListener("error", ev => {
-  console.log("Error", ev)
-})
-
-socket.addEventListener("open", () => {
-  send({ type: "hello", payload: Math.random() })
-})
-
-socket.addEventListener("close", ev => {
-  console.log("Close", ev)
-})
-
-socket.addEventListener("message", ({ data }) => {
-  let msg: Packet
-  try {
-    msg = JSON.parse(data)
-  } catch {
-    return console.log("Invalid message", data)
-  }
-  console.log("Message", msg)
-})
+document.body.classList.add(`sky-gradient-${new Date().getHours()}`)
 
 export {}

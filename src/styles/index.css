@@ -1,0 +1,18 @@
+@import "./sky.css";
+
+@font-face {
+  font-family: "Mona Sans";
+  src: url("../Mona-Sans.woff2") format("woff2 supports variations"), url("../Mona-Sans.woff2") format("woff2-variations");
+}
+
+html {
+  color-scheme: dark light;
+  font-family: "Mona Sans";
+}
+
+body {
+  margin: 0;
+  width: 100dvw;
+  height: 100dvh;
+  overflow: hidden;
+}

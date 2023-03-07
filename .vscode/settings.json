@@ -4,5 +4,5 @@
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "window.title": "${dirty}(⁄ ⁄•⁄ω⁄•⁄ ⁄)${dirty} ${activeEditorMedium}",
-  "workbench.colorTheme": "Red"
+  "workbench.colorTheme": "Hackpot Poisoned Garden"
 }

@@ -10,18 +10,24 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint src",
+    "server": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "ISC",
   "dependencies": {
+    "hammerjs": "^2.0.8",
+    "lodash": "^4.17.21",
+    "vanilla-tilt": "^1.8.0",
     "ws": "^8.12.1"
   },
   "devDependencies": {
+    "@types/hammerjs": "^2.0.41",
+    "@types/lodash": "^4.14.191",
     "@types/ws": "^8.5.4",
-    "@typescript-eslint/eslint-plugin": "^5.54.0",
-    "@typescript-eslint/parser": "^5.54.0",
+    "@typescript-eslint/eslint-plugin": "^5.54.1",
+    "@typescript-eslint/parser": "^5.54.1",
     "eslint": "^8.35.0",
-    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-prettier": "^8.7.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-subztep": "^1.0.13",
     "eslint-plugin-tsdoc": "^0.2.17",

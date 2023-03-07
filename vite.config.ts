@@ -48,9 +48,9 @@ export default defineConfig({
   //     }
   //   }
   // ],
-  // server: {
-  //   port: 1337
-  // },
+  server: {
+    port: 1337
+  },
   // build: {
   //   polyfillModulePreload: false
   // }

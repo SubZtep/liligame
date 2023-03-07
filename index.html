@@ -1,10 +1,28 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>LiliGame</title>
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
-    <link rel="stylesheet" href="sky.css">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="stylesheet" href="/sky.css" />
+    <style>
+      @font-face {
+        font-family: "Mona Sans";
+        src: url("/Mona-Sans.woff2") format("woff2 supports variations"),
+          url("/Mona-Sans.woff2") format("woff2-variations");
+        font-weight: 200 900;
+        font-stretch: 75% 125%;
+      }
+    </style>
   </head>
   <body>
+    <wc-debug></wc-debug>
+
+    <!-- <wc-client></wc-client> -->
+    <joy-stick></joy-stick>
+
     <script type="module" src="./src/index.ts"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
-// declare global {
-//   interface Window {
-//     io: import("socket.io").Socket["client"]
-//   }
-// }
+/// <reference types="vite/client" />
+
+declare global {
+  type Fn = () => void
+}
 
 export {}

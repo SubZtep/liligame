@@ -3,12 +3,14 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "target": "ESNext",
-    "baseUrl": ".",
-    "rootDir": "src",
+    "baseUrl": "src",
+    "rootDir": ".",
     "outDir": "dist",
     "lib": ["DOM", "ESNext"],
     "strict": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "allowSyntheticDefaultImports": true,
+    "noImplicitAny": false,
   },
   "include": ["src/**/*"]
 }
