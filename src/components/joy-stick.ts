@@ -2,10 +2,8 @@ import Hammer from "hammerjs"
 import debounce from "lodash/debounce"
 import throttle from "lodash/throttle"
 import VanillaTilt from "vanilla-tilt"
+import { clamper } from "../lib/misc"
 import { html, css, createWCElements } from "../lib/dom"
-
-// @ts-expect-error
-delete (Hammer.defaults as HammerDefaults).cssProps.userSelect
 
 const template = html`
   <div class="device-wrapper">
@@ -119,15 +117,14 @@ class JoyStick extends HTMLElement {
     let transform: CSSRuleList | any
     let timer: NodeJS.Timeout
     const norm = normShadow(root)
+    const clamp = clamper(-1, 1)
 
     const hammer = new Hammer.Manager(joyEl)
 
     hammer.add(new Hammer.Pan({ threshold: 0, pointers: 0 }))
-
     hammer.add(new Hammer.Swipe()).recognizeWith(hammer.get("pan"))
     hammer.add(new Hammer.Rotate({ threshold: 0 })).recognizeWith(hammer.get("pan"))
     hammer.add(new Hammer.Pinch({ threshold: 0 })).recognizeWith([hammer.get("pan"), hammer.get("rotate")])
-
     hammer.add(new Hammer.Tap({ event: "doubletap", taps: 2 }))
     hammer.add(new Hammer.Tap())
 
@@ -137,15 +134,14 @@ class JoyStick extends HTMLElement {
     hammer.on("swipe", onSwipe)
     hammer.on("tap", onTap)
     hammer.on("doubletap", onDoubleTap)
-
     hammer.on(
       "hammer.input",
       throttle(ev => {
         if (ev.isFinal) {
           resetElement()
         } else {
-          const x = norm(ev.deltaX) * 10
-          const y = -norm(ev.deltaY) * 10
+          const x = clamp(norm(ev.deltaX)) // * 10
+          const y = clamp(-norm(ev.deltaY)) // * 10
 
           const event = new CustomEvent("PlayerPositionChanged", {
             bubbles: false,
@@ -159,7 +155,7 @@ class JoyStick extends HTMLElement {
     )
 
     function logEvent(ev: any) {
-      // throttle(() => console.log("hammer event", ev), 500)
+      throttle(() => console.log("hammer event", ev), 500)
     }
 
     function resetElement() {
@@ -295,7 +291,7 @@ function normShadow(doc: ShadowRoot) {
   return (v: number) => {
     const screen = doc.querySelector<HTMLElement>(".device-screen")
     const size = screen ? Math.min(screen.offsetWidth, screen.offsetHeight) : 800
-    return +((v / size) * 2) // .toFixed(5)
+    return +((v / size) * 2).toFixed(5)
   }
 }
 
