@@ -3,9 +3,15 @@ import WebSocket, { WebSocketServer } from "ws"
 
 const sessions = new Map<string, PlayerSession>()
 
-const wss = new WebSocketServer({ port: +process.env.VITE_WS_PORT! }, () => {
-  console.log("WebSocket server running on port", process.env.VITE_WS_PORT)
-})
+const wss = new WebSocketServer(
+  {
+    port: +process.env.VITE_WS_PORT!,
+    clientTracking: true
+  },
+  () => {
+    console.log("WebSocket server running on port", process.env.VITE_WS_PORT)
+  }
+)
 
 wss.on("connection", ws => {
   ws.on("error", ev => console.log("WS Error", ev))
@@ -25,7 +31,7 @@ wss.on("connection", ws => {
     }
 
     wss.clients.forEach(client => {
-      if (/*client !== ws && */client.readyState === WebSocket.OPEN) {
+      if (/* client !== ws && */ client.readyState === WebSocket.OPEN) {
         client.send(data, { binary: isBinary })
       }
     })

@@ -39,11 +39,12 @@ socket.addEventListener("message", ({ data }) => {
   debugEl?.setAttribute("sessions", JSON.stringify(Array.from(sessions.entries())))
 })
 
-export function play() {
+export function createJoystick() {
   const joystick = document.createElement("joy-stick")
   joystick.addEventListener("AxisChange", ev => (player.position = ev.detail))
   document.body.classList.add("playing")
-  document.body.prepend(joystick)
+  return joystick
+  // document.body.prepend(joystick)
 }
 
 export function parseMessage(json: string): SocketMessage {

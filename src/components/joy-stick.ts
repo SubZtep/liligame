@@ -5,28 +5,11 @@ import VanillaTilt from "vanilla-tilt"
 import { clamper } from "../lib/misc"
 import { html, css, createWCElements } from "../lib/dom"
 
-const template = html`
-  <div class="device-wrapper">
-    <div class="device">
-      <div class="device-screen">
-        <div id="hitarea"></div>
-      </div>
-    </div>
-  </div>
-`
-
 const style = css`
   :host {
     --max-size: min(min(100vw, 100vh), 400px);
     --pointer-size: calc(var(--max-size) / 4);
-  }
-  .device-wrapper {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: flex-end;
-    pointer-events: none;
+    place-self: end;
   }
   .device > * {
     box-sizing: inherit;
@@ -38,8 +21,6 @@ const style = css`
     background: rgba(0 0 0 / 0.5);
     border-radius: 20px;
     padding: 30px;
-    position: absolute;
-    bottom: 0;
     width: var(--max-size);
     height: var(--max-size);
   }
@@ -54,19 +35,19 @@ const style = css`
     width: 100%;
   }
   #hitarea {
-    box-shadow: 4px -4px 12px #3336, inset 1px -1px 2px #eeea;
-    position: absolute;
     top: 0;
     left: 0;
+    position: absolute;
     width: var(--pointer-size);
     height: var(--pointer-size);
+    box-shadow: 4px -4px 12px #3336, inset 1px -1px 2px #eeea;
     pointer-events: auto;
     background: rebeccapurple;
-    cursor: move;
     -ms-touch-select: none;
     -webkit-touch-callout: none;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     border-radius: 50%;
+    cursor: move;
   }
   @media (orientation: portrait) {
     .device {
@@ -87,13 +68,21 @@ let startX = 0
 let startY = 0
 
 class JoyStick extends HTMLElement {
-  static get observedAttributes() {
-    return ["tilt"]
-  }
-
   constructor() {
     super()
-    this.attachShadow({ mode: "open" }).append(...Array.from(createWCElements({ template, style })))
+    this.attachShadow({ mode: "open" }).append(
+      ...Array.from(
+        createWCElements({
+          template: html`
+            <div class="device-screen">
+              <div id="hitarea"></div>
+            </div>
+          `,
+          className: "device",
+          style
+        })
+      )
+    )
   }
 
   connectedCallback() {

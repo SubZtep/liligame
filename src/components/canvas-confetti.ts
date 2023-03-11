@@ -1,4 +1,3 @@
-import { createWCElements, css, html } from "../lib/dom"
 import Confetti from "canvas-confetti"
 import { getRandomArbitrary } from "../lib/misc"
 
@@ -9,25 +8,23 @@ class CanvasConfetti extends HTMLElement {
 
   #confetti!: ReturnType<typeof Confetti.create>
   options: Confetti.Options = {
+    shapes: ["star", "circle"],
     particleCount: 30,
     startVelocity: 20,
-    spread: 40,
-    shapes: ["star", "circle"]
-    // angle: getRandomArbitrary(0, 360)
-    // origin: { x: 1, y: 1 }
+    spread: 40
   }
 
   constructor() {
     super()
 
-    const template = document.createElement("canvas")
-    template.width = window.innerWidth
-    template.height = window.innerHeight
-    template.classList.add("confetti")
-    this.attachShadow({ mode: "open" }).append(template)
+    const canvas = document.createElement("canvas")
+    canvas.width = window.innerWidth
+    canvas.height = window.innerHeight
+    canvas.style.position = "absolute"
+    this.attachShadow({ mode: "open" }).append(canvas)
 
-    this.#confetti = Confetti.create(template, {
-      // resize: true,
+    this.#confetti = Confetti.create(canvas, {
+      resize: true,
       useWorker: true
     })
   }

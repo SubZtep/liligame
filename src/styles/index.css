@@ -32,9 +32,11 @@ select {
   font: inherit;
 }
 
-.playing wc-debug,
-.playing .player {
+.playing wc-debug {
   opacity: 0.3;
+}
+.playing .player {
+  opacity: 0.9;
 }
 
 #debug {
@@ -74,9 +76,7 @@ select {
   left: 0;
   width: 100%;
   height: 100%;
-  /* z-index: 0; */
   pointer-events: none;
-  /* display: contents; */
 }
 
 .player {
@@ -123,16 +123,9 @@ select {
   transform: rotate(40deg);
 }
 
+wc-debug,
 canvas-confetti {
-  /* pointer-events: none;
-  position: absolute;
-  inset: 0; */
   display: contents;
-  /* top: 0;
-  left: 0; */
-  /* width: 100%;
-  height: 100%; */
-  /* z-index: 2; */
 }
 
 .square-bg {
@@ -148,19 +141,24 @@ canvas-confetti {
 }
 
 .play-button {
+  place-self: end;
   opacity: 0.9;
+  margin: 2px;
   padding: 8px;
   font-size: 2rem;
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
   box-shadow: inset 0 0 15px #000;
   text-shadow: 0 0 2px #000;
   border: 3px solid black;
   border-radius: 50%;
   aspect-ratio: 1;
   font-weight: 100;
-  color: #ff0a;
+  color: lawngreen;
   cursor: pointer;
   border: 3px solid black;
+}
+
+.controllers {
+  position: absolute;
+  display: grid;
+  inset: 0;
 }

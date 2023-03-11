@@ -1,13 +1,4 @@
-// import Matter from "matter-js"
 import { Engine, Render, Runner, Bodies, Composite } from "matter-js"
-import { createWCElements, html, css } from "../lib/dom"
-
-// module aliases
-// const Engine = Matter.Engine,
-//   Render = Matter.Render,
-//   Runner = Matter.Runner,
-//   Bodies = Matter.Bodies,
-//   Composite = Matter.Composite
 
 class PhysicMatter extends HTMLElement {
   static get observedAttributes() {
@@ -16,24 +7,6 @@ class PhysicMatter extends HTMLElement {
 
   constructor() {
     super()
-    // this.attachShadow({ mode: "open" }).append(
-    //   ...Array.from(
-    //     createWCElements({
-    //       template: html`<canvas class="confetti"></canvas>`,
-    //       style: css`
-    //         .confetti {
-    //           pointer-events: none;
-    //           position: absolute;
-    //           top: 0;
-    //           left: 0;
-    //           width: 100%;
-    //           height: 100%;
-    //           z-index: 2;
-    //         }
-    //       `
-    //     })
-    //   )
-    // )
     const canvas = document.createElement("canvas")
     this.attachShadow({ mode: "open" }).append(canvas)
 
@@ -44,7 +17,6 @@ class PhysicMatter extends HTMLElement {
     // create a renderer
     var render = Render.create({
       canvas,
-      // element: document.body,
       engine,
       options: {
         width,
@@ -106,4 +78,4 @@ class PhysicMatter extends HTMLElement {
 
 customElements.define("physics-matter", PhysicMatter)
 
-// export {}
+export {}

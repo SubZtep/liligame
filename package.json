@@ -11,7 +11,7 @@
     "dev": "pnpm run \"/^dev:.*/\"",
     "dev:client": "vite",
     "dev:server": "nodemon --exec node --loader ts-node/esm -r dotenv/config src/server.ts",
-    "build": "vite build",
+    "build": "vite build --mode production",
     "lint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
