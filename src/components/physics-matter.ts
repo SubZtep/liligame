@@ -23,10 +23,10 @@ class PhysicMatter extends HTMLElement {
         height,
         pixelRatio: 1,
         background: "#ffa1d5",
-        wireframeBackground: "#222"
+        wireframeBackground: "#222",
         // hasBounds: false,
         // enabled: true,
-        // wireframes: false,
+        wireframes: false,
         // showSleeping: true,
         // showDebug: false,
         // showBroadphase: false,

@@ -162,3 +162,14 @@ canvas-confetti {
   display: grid;
   inset: 0;
 }
+
+.countdown {
+  position: fixed;
+  accent-color: #bc1919;
+  transform: rotateZ(90deg);
+  transform-origin: left;
+  top: 0;
+  left: 30px;
+  width: 70%;
+  height: 42px;
+}
