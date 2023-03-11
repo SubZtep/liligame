@@ -1,10 +1,8 @@
-import { v4 } from "uuid"
 import Hammer from "hammerjs"
 import debounce from "lodash/debounce"
 import throttle from "lodash/throttle"
 import VanillaTilt from "vanilla-tilt"
 import { html, css, createWCElements } from "../lib/dom"
-import { WcElement } from "./wc-element"
 
 // @ts-expect-error
 delete (Hammer.defaults as HammerDefaults).cssProps.userSelect
@@ -95,16 +93,9 @@ class JoyStick extends HTMLElement {
     return ["tilt"]
   }
 
-  // uuid = v4()
-
   constructor() {
     super()
     this.attachShadow({ mode: "open" }).append(...Array.from(createWCElements({ template, style })))
-
-    // this.socket.addEventListener("open", _ev => {
-    //   // console.log("Open", ev)
-    //   this.send(this.uuid)
-    // })
   }
 
   connectedCallback() {
@@ -156,17 +147,14 @@ class JoyStick extends HTMLElement {
           const x = norm(ev.deltaX) * 10
           const y = -norm(ev.deltaY) * 10
 
-          // this.socket.send(JSON.stringify({ x, y }))
-          // this.send({ uuid: this.uuid, position: { x, y } })
           const event = new CustomEvent("PlayerPositionChanged", {
-            bubbles: true,
-            cancelable: false,
+            bubbles: false,
+            cancelable: true,
             composed: true,
             detail: { x, y }
           })
           this.shadowRoot!.dispatchEvent(event)
         }
-      // }, 500)
       }, 1_000 / 30)
     )
 

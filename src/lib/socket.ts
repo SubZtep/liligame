@@ -1,28 +1,21 @@
 import { v4 } from "uuid"
-import type { SocketMessage, PlayerSession, Axes } from "../types/ws"
+import type { SocketMessage, PlayerSession } from "../types/ws"
 
 export const uuid = v4()
-
-document.querySelector("h1")!.innerHTML = uuid
-const playerEl = document.getElementById("player")!
-const debugEl = document.getElementById("debug")!
-
 const socket = new WebSocket(import.meta.env.VITE_WS_URL)
+const debugEl = document.querySelector("wc-debug")!
 
+const sessions = new Map<string, PlayerSession>()
 const rawPlayer: PlayerSession = {}
+
 const player = new Proxy(rawPlayer, {
   set(obj, prop, value) {
     obj[prop] = value
-
     const packet = JSON.stringify({ uuid, position: value })
     socket.send(packet)
-
-    playerEl.innerHTML = JSON.stringify(rawPlayer, null, 2)
     return true
   }
 })
-
-const sessions = new Map<string, PlayerSession>()
 
 socket.addEventListener("message", ({ data }) => {
   const msg = parseMessage(data)
@@ -31,11 +24,11 @@ socket.addEventListener("message", ({ data }) => {
   const { uuid: msgUuid, position } = msg
   sessions.set(msgUuid, { position })
 
-  debugEl.innerHTML = JSON.stringify(Array.from(sessions.entries()), null, 2)
+  debugEl.setAttribute("sessions", JSON.stringify(Array.from(sessions.entries()), null, 2))
 })
 
 document.querySelector("joy-stick")!.addEventListener("PlayerPositionChanged", ev => {
-  player.position = (ev as CustomEvent<Axes>).detail
+  player.position = ev.detail
 })
 
 export function parseMessage(json: string): SocketMessage {
@@ -45,6 +38,5 @@ export function parseMessage(json: string): SocketMessage {
   } catch {
     throw new Error(`Invalid message: ${json}`)
   }
-
   return msg
 }
