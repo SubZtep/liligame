@@ -8,18 +8,7 @@ const wss = new WebSocketServer({ port: +process.env.VITE_WS_PORT! }, () => {
 })
 
 wss.on("connection", ws => {
-  ws.send(JSON.stringify({ sessions: Array.from(sessions.entries()) }))
-
   ws.on("error", ev => console.log("WS Error", ev))
-
-  // ws.on("open", () => {
-  //   console.log("open")
-  //   ws.send("OOOOOPEN" + Date.now())
-  // })
-
-  // ws.on("close", () => {
-  //   console.log("close")
-  // })
 
   ws.on("message", (data, isBinary) => {
     console.log("Message received", data.toString())
@@ -33,13 +22,6 @@ wss.on("connection", ws => {
     if (msg.uuid) {
       const { uuid, ...session } = msg
       sessions.set(uuid, session)
-      // if (!sessions.has(msg.uuid)) {
-      //   sessions.set(msg.uuid, {})
-      // }
-
-      // if (msg.position) {
-      //   sessions.set(msg.uuid, { position: msg.position })
-      // }
     }
 
     wss.clients.forEach(client => {

@@ -166,8 +166,8 @@ class JoyStick extends HTMLElement {
           })
           this.shadowRoot!.dispatchEvent(event)
         }
-      }, 500)
-      // }, 1_000 / 30)
+      // }, 500)
+      }, 1_000 / 30)
     )
 
     function logEvent(ev: any) {
