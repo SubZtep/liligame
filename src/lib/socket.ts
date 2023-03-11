@@ -36,8 +36,7 @@ socket.addEventListener("message", ({ data }) => {
   playerEl.style.setProperty("--y", String(-position.y))
 
   sessions.set(msgUuid, { position })
-
-  debugEl.setAttribute("sessions", JSON.stringify(Array.from(sessions.entries()), null, 2))
+  debugEl.setAttribute("sessions", JSON.stringify(Array.from(sessions.entries())))
 })
 
 export function play() {
