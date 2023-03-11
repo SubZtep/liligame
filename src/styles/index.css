@@ -33,3 +33,11 @@ select {
   font-size: 0.7rem;
   color: yellow;
 }
+
+#player {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 0.7rem;
+  color: yellow;
+}

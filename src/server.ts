@@ -12,16 +12,17 @@ wss.on("connection", ws => {
 
   ws.on("error", ev => console.log("WS Error", ev))
 
-  ws.on("open", () => {
-    console.log("open")
-    ws.send("OOOOOPEN" + Date.now())
-  })
+  // ws.on("open", () => {
+  //   console.log("open")
+  //   ws.send("OOOOOPEN" + Date.now())
+  // })
 
-  ws.on("close", () => {
-    console.log("close")
-  })
+  // ws.on("close", () => {
+  //   console.log("close")
+  // })
 
   ws.on("message", (data, isBinary) => {
+    console.log("Message received", data.toString())
     let msg: SocketMessage
     try {
       msg = JSON.parse(data.toString())
@@ -30,13 +31,15 @@ wss.on("connection", ws => {
     }
 
     if (msg.uuid) {
-      if (!sessions.has(msg.uuid)) {
-        sessions.set(msg.uuid, {})
-      }
+      const { uuid, ...session } = msg
+      sessions.set(uuid, session)
+      // if (!sessions.has(msg.uuid)) {
+      //   sessions.set(msg.uuid, {})
+      // }
 
-      if (msg.position) {
-        sessions.set(msg.uuid, { position: msg.position })
-      }
+      // if (msg.position) {
+      //   sessions.set(msg.uuid, { position: msg.position })
+      // }
     }
 
     wss.clients.forEach(client => {

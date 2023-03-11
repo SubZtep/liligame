@@ -90,12 +90,12 @@ const style = css`
 let startX = 0
 let startY = 0
 
-class JoyStick extends WcElement {
+class JoyStick extends HTMLElement {
   static get observedAttributes() {
     return ["tilt"]
   }
 
-  uuid = v4()
+  // uuid = v4()
 
   constructor() {
     super()
@@ -157,13 +157,21 @@ class JoyStick extends WcElement {
           const y = -norm(ev.deltaY) * 10
 
           // this.socket.send(JSON.stringify({ x, y }))
-          this.send({ uuid: this.uuid, position: { x, y } })
+          // this.send({ uuid: this.uuid, position: { x, y } })
+          const event = new CustomEvent("PlayerPositionChanged", {
+            bubbles: true,
+            cancelable: false,
+            composed: true,
+            detail: { x, y }
+          })
+          this.shadowRoot!.dispatchEvent(event)
         }
-      }, 1_000 / 30)
+      }, 500)
+      // }, 1_000 / 30)
     )
 
     function logEvent(ev: any) {
-      throttle(() => console.log("hammer event", ev), 500)
+      // throttle(() => console.log("hammer event", ev), 500)
     }
 
     function resetElement() {
