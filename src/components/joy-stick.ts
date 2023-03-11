@@ -140,8 +140,8 @@ class JoyStick extends HTMLElement {
         if (ev.isFinal) {
           resetElement()
         } else {
-          const x = clamp(norm(ev.deltaX)) // * 10
-          const y = clamp(-norm(ev.deltaY)) // * 10
+          const x = clamp(norm(ev.deltaX))
+          const y = clamp(-norm(ev.deltaY))
 
           const event = new CustomEvent("AxisChange", {
             bubbles: true,
@@ -155,7 +155,7 @@ class JoyStick extends HTMLElement {
     )
 
     function logEvent(ev: any) {
-      throttle(() => console.log("hammer event", ev), 500)
+      throttle(() => console.log("hammer event", ev), 1_000)
     }
 
     function resetElement() {
