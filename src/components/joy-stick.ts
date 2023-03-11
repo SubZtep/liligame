@@ -10,6 +10,9 @@ const style = css`
     --max-size: min(min(100vw, 100vh), 400px);
     --pointer-size: calc(var(--max-size) / 4);
     place-self: end;
+    position: absolute;
+    bottom: 0;
+    right: 0;
   }
   .device > * {
     box-sizing: inherit;

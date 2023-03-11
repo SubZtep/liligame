@@ -3,6 +3,7 @@ import "./components/joy-stick"
 import "./components/canvas-confetti"
 import "./components/physics-matter"
 import "./components/count-down"
+import "./components/level-cat-box"
 import { createJoystick } from "./lib/socket"
 import "./styles/index.css"
 
@@ -33,8 +34,8 @@ countdown?.addEventListener(
   "TimeIsUp",
   () => {
     countdown.remove()
-    document.body.classList.remove("square-bg")
-    const el = document.createElement("physics-matter")
+    document.body.classList.replace("square-bg", "forest-bg")
+    const el = document.createElement("level-cat-box")
     document.body.prepend(el)
   },
   { once: true }

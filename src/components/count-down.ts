@@ -1,6 +1,4 @@
-import Confetti from "canvas-confetti"
 import { css } from "../lib/dom"
-import { getRandomArbitrary } from "../lib/misc"
 
 class CountDown extends HTMLElement {
   static get observedAttributes() {

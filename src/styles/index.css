@@ -140,13 +140,18 @@ canvas-confetti {
   background-size: 1.945rem 1.945rem;
 }
 
+.forest-bg {
+  background: url(images/cartoon_forest.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
 .play-button {
-  place-self: end;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
   opacity: 0.9;
-  margin: 2px;
   padding: 8px;
   font-size: 2rem;
-  box-shadow: inset 0 0 15px #000;
   text-shadow: 0 0 2px #000;
   border: 3px solid black;
   border-radius: 50%;
@@ -155,12 +160,9 @@ canvas-confetti {
   color: lawngreen;
   cursor: pointer;
   border: 3px solid black;
-}
-
-.controllers {
-  position: absolute;
-  display: grid;
-  inset: 0;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 1);
+  transform: scale(1);
+  animation: pulse 2s infinite;
 }
 
 .countdown {
@@ -172,4 +174,21 @@ canvas-confetti {
   left: 30px;
   width: 70%;
   height: 42px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.7);
+  }
+
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 10px rgba(0, 0, 0, 0);
+  }
+
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  }
 }
