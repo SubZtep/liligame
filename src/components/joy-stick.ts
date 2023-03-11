@@ -291,7 +291,7 @@ function normShadow(doc: ShadowRoot) {
   return (v: number) => {
     const screen = doc.querySelector<HTMLElement>(".device-screen")
     const size = screen ? Math.min(screen.offsetWidth, screen.offsetHeight) : 800
-    return +((v / size) * 2).toFixed(5)
+    return +((v / size) * 2)
   }
 }
 

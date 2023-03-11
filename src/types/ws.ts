@@ -15,5 +15,6 @@ export interface SocketMessage {
 }
 
 export interface PlayerSession {
+  /** px */
   position?: Axes
 }

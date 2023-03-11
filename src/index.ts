@@ -1,6 +1,5 @@
 import "./components/joy-stick"
 import "./components/wc-debug"
-import "./components/play-button"
 import "./components/canvas-confetti"
 import "./components/physics-matter"
 import { play } from "./lib/socket"
@@ -16,8 +15,8 @@ document.body.addEventListener("click", ({ clientX, clientY }) => {
   console.log("Click", normalAxes)
 })
 
-document.querySelector("play-button")?.addEventListener(
-  "StartPlaying",
+document.querySelector(".play-button")?.addEventListener(
+  "click",
   ({ target }) => {
     ;(target as HTMLElement).remove()
     play()
