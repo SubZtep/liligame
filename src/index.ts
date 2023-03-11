@@ -6,9 +6,6 @@ import "./components/physics-matter"
 import { play } from "./lib/socket"
 import "./styles/index.css"
 
-// Set current time day/night gradient
-document.body.classList.add(`sky-gradient-${new Date().getHours()}`)
-
 const confetti = document.querySelector("canvas-confetti")
 
 document.body.addEventListener("click", ({ clientX, clientY }) => {

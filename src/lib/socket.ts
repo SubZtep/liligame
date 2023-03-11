@@ -43,7 +43,7 @@ export function play() {
   const joystick = document.createElement("joy-stick")
   joystick.addEventListener("AxisChange", ev => (player.position = ev.detail))
   document.body.classList.add("playing")
-  document.body.append(joystick)
+  document.body.prepend(joystick)
 }
 
 export function parseMessage(json: string): SocketMessage {

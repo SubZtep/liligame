@@ -35,7 +35,7 @@ class CanvasConfetti extends HTMLElement {
               left: 0;
               /* width: 100%;
               height: 100%; */
-              z-index: 2;
+              /* z-index: 2; */
             }
           `
         })
