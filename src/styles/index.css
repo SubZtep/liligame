@@ -1,6 +1,13 @@
 @import "./fonts.css";
 @import "./sky.css";
 
+:root {
+  --color: pink;
+  --color2: cyan;
+  --x: 0;
+  --y: 0;
+}
+
 html {
   color-scheme: dark light;
   font-family: "Mona Sans";
@@ -26,6 +33,10 @@ select {
   font: inherit;
 }
 
+.playing wc-debug, .playing .player {
+  opacity: 0.15;
+}
+
 #debug {
   position: absolute;
   top: 0;
@@ -40,4 +51,64 @@ select {
   right: 0;
   font-size: 0.7rem;
   color: yellow;
+}
+
+.player:nth-of-type(1) {
+  --color: red;
+  --color2: darkred;
+}
+
+.player:nth-of-type(2) {
+  --color: green;
+  --color2: darkgreen;
+}
+
+.player:nth-of-type(3) {
+  --color: blue;
+  --color2: darkblue;
+}
+
+.player {
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 57%, var(--color) 1%, var(--color2) 50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: block;
+  position: fixed;
+  top: calc(calc(var(--y) * 50%) + 50%);
+  left: calc(calc(var(--x) * 50%) + 50%);
+  z-index: 1;
+}
+
+.player:before {
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 40px solid var(--color2);
+  border-radius: 5px;
+  left: -15px;
+  top: -5px;
+  transform: rotate(-40deg);
+}
+
+.player:after {
+  pointer-events: none;
+  position: absolute;
+  display: block;
+  content: "";
+  width: 0;
+  height: 0;
+  border-left: 30px solid transparent;
+  border-right: 30px solid transparent;
+  border-bottom: 40px solid var(--color2);
+  border-radius: 5px;
+  right: -15px;
+  top: -5px;
+  transform: rotate(40deg);
 }

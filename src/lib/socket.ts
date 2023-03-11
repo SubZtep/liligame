@@ -19,17 +19,33 @@ const player = new Proxy(rawPlayer, {
 
 socket.addEventListener("message", ({ data }) => {
   const msg = parseMessage(data)
-  if (!msg.uuid) throw new Error("Invalid message, missing uuid")
-
   const { uuid: msgUuid, position } = msg
+  if (!msgUuid || !position) throw new Error("Invalid message")
+
+  let playerEl: HTMLElement
+  if (!sessions.has(msgUuid)) {
+    playerEl = document.createElement("div")
+    playerEl.setAttribute("data-uuid", msgUuid)
+    playerEl.classList.add("player")
+    document.body.append(playerEl)
+  } else {
+    playerEl = document.querySelector(`[data-uuid="${msgUuid}"]`)!
+    if (!playerEl) throw new Error("Player element not found")
+  }
+  playerEl.style.setProperty("--x", String(position.x))
+  playerEl.style.setProperty("--y", String(-position.y))
+
   sessions.set(msgUuid, { position })
 
   debugEl.setAttribute("sessions", JSON.stringify(Array.from(sessions.entries()), null, 2))
 })
 
-document.querySelector("joy-stick")!.addEventListener("PlayerPositionChanged", ev => {
-  player.position = ev.detail
-})
+export function play() {
+  const joystick = document.createElement("joy-stick")
+  joystick.addEventListener("AxisChange", ev => (player.position = ev.detail))
+  document.body.classList.add("playing")
+  document.body.append(joystick)
+}
 
 export function parseMessage(json: string): SocketMessage {
   let msg: SocketMessage

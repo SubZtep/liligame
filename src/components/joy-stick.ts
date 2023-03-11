@@ -143,8 +143,8 @@ class JoyStick extends HTMLElement {
           const x = clamp(norm(ev.deltaX)) // * 10
           const y = clamp(-norm(ev.deltaY)) // * 10
 
-          const event = new CustomEvent("PlayerPositionChanged", {
-            bubbles: false,
+          const event = new CustomEvent("AxisChange", {
+            bubbles: true,
             cancelable: true,
             composed: true,
             detail: { x, y }

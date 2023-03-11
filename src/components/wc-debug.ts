@@ -4,6 +4,7 @@ const template = html`<div class="box"></div>`
 
 const style = css`
   .box {
+    pointer-events: none;
     opacity: 0.8;
     white-space: pre;
     background: linear-gradient(to bottom, green 25%, brown 100%);
