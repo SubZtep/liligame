@@ -1,9 +1,10 @@
-import { WS_URL } from "../config"
+import { v4 } from "uuid"
 import Hammer from "hammerjs"
 import debounce from "lodash/debounce"
 import throttle from "lodash/throttle"
 import VanillaTilt from "vanilla-tilt"
 import { html, css, createWCElements } from "../lib/dom"
+import { WcElement } from "./wc-element"
 
 // @ts-expect-error
 delete (Hammer.defaults as HammerDefaults).cssProps.userSelect
@@ -89,17 +90,21 @@ const style = css`
 let startX = 0
 let startY = 0
 
-class JoyStick extends HTMLElement {
-  #socket: WebSocket
-
+class JoyStick extends WcElement {
   static get observedAttributes() {
     return ["tilt"]
   }
 
+  uuid = v4()
+
   constructor() {
     super()
     this.attachShadow({ mode: "open" }).append(...Array.from(createWCElements({ template, style })))
-    this.#socket = new WebSocket(WS_URL)
+
+    // this.socket.addEventListener("open", _ev => {
+    //   // console.log("Open", ev)
+    //   this.send(this.uuid)
+    // })
   }
 
   connectedCallback() {
@@ -151,7 +156,8 @@ class JoyStick extends HTMLElement {
           const x = norm(ev.deltaX) * 10
           const y = -norm(ev.deltaY) * 10
 
-          this.#socket.send(JSON.stringify({ x, y }))
+          // this.socket.send(JSON.stringify({ x, y }))
+          this.send({ uuid: this.uuid, position: { x, y } })
         }
       }, 1_000 / 30)
     )
@@ -272,10 +278,6 @@ class JoyStick extends HTMLElement {
     }
 
     resetElement()
-  }
-
-  disconnectedCallback() {
-    this.#socket.close()
   }
 }
 

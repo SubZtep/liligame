@@ -4,3 +4,4 @@ extends:
 
 rules:
   no-inner-declarations: off
+  "@typescript-eslint/no-unnecessary-type-constraint": error

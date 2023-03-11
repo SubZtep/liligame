@@ -25,3 +25,11 @@ button,
 select {
   font: inherit;
 }
+
+#debug {
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-size: 0.7rem;
+  color: yellow;
+}

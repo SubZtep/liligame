@@ -44,7 +44,7 @@ class WcClient extends HTMLElement {
     })
   }
 
-  connectedCallback() {}
+  // connectedCallback() {}
 
   disconnectedCallback() {
     this.#socket.close()

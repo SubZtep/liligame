@@ -8,9 +8,11 @@
     "outDir": "dist",
     "lib": ["DOM", "ESNext"],
     "strict": true,
+    "noImplicitAny": false,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "noImplicitAny": false,
+    "forceConsistentCasingInFileNames": true,
+    "importsNotUsedAsValues": "error"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "server.ts"]
 }
