@@ -3,7 +3,8 @@ export type Axes = {
   y: number
 }
 
-export interface SocketMessage {  // type: "login" | "position"
+export interface SocketMessage {
+  // type: "login" | "position"
   uuid?: string
   position?: Axes
   sessions?: [string, object][]

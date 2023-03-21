@@ -12,7 +12,6 @@ export function* createWCElements({
   className?: string
   /** CSS */
   style?: string
-
 }) {
   if (style) {
     const styleEl = document.createElement("style")

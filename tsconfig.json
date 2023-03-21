@@ -11,8 +11,7 @@
     "noImplicitAny": false,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "error"
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src/**/*", "server.ts"]
 }
