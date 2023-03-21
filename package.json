@@ -12,8 +12,7 @@
     "dev:client": "vite",
     "dev:server": "nodemon --exec node --loader ts-node/esm -r dotenv/config src/server.ts",
     "build": "vite build --mode production",
-    "lint": "eslint src",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint src"
   },
   "dependencies": {
     "canvas-confetti": "^1.6.0",
@@ -43,6 +42,7 @@
     "prettier": "^2.8.5",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2",
-    "vite": "^4.2.1"
+    "vite": "^4.2.1",
+    "vite-tsconfig-paths": "^4.0.7"
   }
 }

@@ -11,7 +11,10 @@
     "noImplicitAny": false,
     "isolatedModules": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "paths": {
+      "~/*": ["*"]
+    }
   },
-  "include": ["src/**/*", "server.ts"]
+  "include": ["src/**/*", "games/**/*", "server.ts"]
 }

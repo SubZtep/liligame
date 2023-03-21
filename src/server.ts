@@ -2,14 +2,15 @@ import type { PlayerSession, SocketMessage } from "./types/ws"
 import WebSocket, { WebSocketServer } from "ws"
 
 const sessions = new Map<string, PlayerSession>()
+const port = +process.env.VITE_WS_PORT!
 
 const wss = new WebSocketServer(
   {
-    port: +process.env.VITE_WS_PORT!,
+    port,
     clientTracking: true
   },
   () => {
-    console.log("WebSocket server running on port", process.env.VITE_WS_PORT)
+    console.log("WebSocket server running on port", port)
   }
 )
 
