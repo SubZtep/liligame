@@ -51,5 +51,9 @@
   },
   "browserslist": [
     "defaults"
-  ]
+  ],
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  }
 }
