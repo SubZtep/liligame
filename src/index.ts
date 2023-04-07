@@ -24,7 +24,7 @@ playButton?.addEventListener(
     tEl.remove()
     parent?.append(createJoystick())
   },
-  { once: true },
+  { once: true }
 )
 
 countdown?.setAttribute("wait", "3")
@@ -33,7 +33,7 @@ countdown?.addEventListener(
   () => {
     location.assign("./games/black/")
   },
-  { once: true },
+  { once: true }
 )
 
 export {}

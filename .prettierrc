@@ -1,6 +1,1 @@
-semi: false
-printWidth: 120
-arrowParens: avoid
-trailingComma: all
-quoteProps: preserve
-trim_trailing_whitespace: true
+"prettier-config-subztep"
