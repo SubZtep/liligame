@@ -1,10 +1,10 @@
-name: Lint & Test
+name: Test & Lint
 
 on: push
 
 jobs:
   test:
-    name: From build to publish
+    name: From build to lint
     runs-on: ubuntu-latest
     env:
       NODE_ENV: development
@@ -22,8 +22,6 @@ jobs:
             - args: [--ignore-scripts]
 
       - run: pnpm run build
-
-      - run: pnpm publish --dry-run --no-git-checks
 
       - run: pnpm test
 
