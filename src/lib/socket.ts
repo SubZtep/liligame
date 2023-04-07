@@ -14,7 +14,7 @@ const player = new Proxy(rawPlayer, {
     const packet = JSON.stringify({ uuid, position: value })
     socket.send(packet)
     return true
-  }
+  },
 })
 
 socket.addEventListener("message", ({ data }) => {

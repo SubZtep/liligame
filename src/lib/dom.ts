@@ -4,7 +4,7 @@ export const css = String.raw
 export function* createWCElements({
   template,
   className,
-  style
+  style,
 }: {
   /** HTML */
   template?: string

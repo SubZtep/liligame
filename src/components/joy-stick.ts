@@ -82,9 +82,9 @@ class JoyStick extends HTMLElement {
             </div>
           `,
           className: "device",
-          style
-        })
-      )
+          style,
+        }),
+      ),
     )
   }
 
@@ -101,7 +101,7 @@ class JoyStick extends HTMLElement {
       glare: true,
       reset: false,
       reverse: true,
-      "max-glare": 0.5
+      "max-glare": 0.5,
     })
 
     // hammerweb from here
@@ -139,11 +139,11 @@ class JoyStick extends HTMLElement {
             bubbles: true,
             cancelable: true,
             composed: true,
-            detail: { x, y }
+            detail: { x, y },
           })
           this.shadowRoot!.dispatchEvent(event)
         }
-      }, 1_000 / 30)
+      }, 1_000 / 30),
     )
 
     function logEvent(ev: any) {
@@ -158,7 +158,7 @@ class JoyStick extends HTMLElement {
         angle: 0,
         rx: 0,
         ry: 0,
-        rz: 0
+        rz: 0,
       }
       requestElementUpdate()
     }
@@ -167,7 +167,7 @@ class JoyStick extends HTMLElement {
       let value: any = [
         "translate3d(" + transform.translate.x + "px, " + transform.translate.y + "px, 0)",
         "scale(" + transform.scale + ", " + transform.scale + ")",
-        "rotate3d(" + transform.rx + "," + transform.ry + "," + transform.rz + "," + transform.angle + "deg)"
+        "rotate3d(" + transform.rx + "," + transform.ry + "," + transform.rz + "," + transform.angle + "deg)",
       ]
 
       value = value.join(" ")
@@ -186,7 +186,7 @@ class JoyStick extends HTMLElement {
       joyEl.className = ""
       transform.translate = {
         x: startX + ev.deltaX,
-        y: startY + ev.deltaY
+        y: startY + ev.deltaY,
       }
 
       logEvent(ev)

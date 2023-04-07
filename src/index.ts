@@ -24,16 +24,16 @@ playButton?.addEventListener(
     tEl.remove()
     parent?.append(createJoystick())
   },
-  { once: true }
+  { once: true },
 )
 
 countdown?.setAttribute("wait", "3")
 countdown?.addEventListener(
   "TimeIsUp",
   () => {
-    location.assign("./games/black/");
+    location.assign("./games/black/")
   },
-  { once: true }
+  { once: true },
 )
 
 export {}

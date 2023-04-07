@@ -1,6 +1,14 @@
 root: true
+
+plugins:
+  - compat
+
 extends:
   - plugin:subztep/recommended
+  - plugin:compat/recommended
+
+env:
+  browser: true
 
 rules:
   no-inner-declarations: off

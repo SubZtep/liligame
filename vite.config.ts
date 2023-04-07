@@ -1,7 +1,7 @@
-import { defineConfig } from "vite"
+import tsconfigPaths from 'vite-tsconfig-paths'
+import { defineConfig } from "vitest/config"
 import { readdirSync } from "node:fs"
 import { resolve } from "node:path"
-import tsconfigPaths from 'vite-tsconfig-paths'
 
 export default defineConfig({
   plugins: [tsconfigPaths()],
@@ -18,5 +18,8 @@ export default defineConfig({
   },
   server: {
     port: 1337
+  },
+  test: {
+    watch: false
   }
 })

@@ -7,11 +7,11 @@ const port = +process.env.VITE_WS_PORT!
 const wss = new WebSocketServer(
   {
     port,
-    clientTracking: true
+    clientTracking: true,
   },
   () => {
     console.log("WebSocket server running on port", port)
-  }
+  },
 )
 
 wss.on("connection", ws => {

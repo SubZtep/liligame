@@ -11,7 +11,7 @@ class CanvasConfetti extends HTMLElement {
     shapes: ["star", "circle"],
     particleCount: 30,
     startVelocity: 20,
-    spread: 40
+    spread: 40,
   }
 
   constructor() {
@@ -25,7 +25,7 @@ class CanvasConfetti extends HTMLElement {
 
     this.#confetti = Confetti.create(canvas, {
       resize: true,
-      useWorker: true
+      useWorker: true,
     })
   }
 
@@ -33,7 +33,7 @@ class CanvasConfetti extends HTMLElement {
     const options = {
       ...this.options,
       angle: getRandomArbitrary(0, 360),
-      [name]: JSON.parse(value)
+      [name]: JSON.parse(value),
     }
     this.#confetti(options)
   }

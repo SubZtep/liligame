@@ -40,10 +40,9 @@ class CountDown extends HTMLElement {
         const event = new CustomEvent("TimeIsUp", {
           bubbles: true,
           cancelable: true,
-          composed: true
+          composed: true,
         })
         this.shadowRoot!.dispatchEvent(event)
-
       }
     }, 1_000)
   }
