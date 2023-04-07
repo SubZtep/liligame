@@ -1,7 +1,7 @@
 {
   "name": "liligame",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sandbox for graphics and web sockets",
   "author": "Andras Serfozo <subztep@gmail.com>",
   "repository": "github:SubZtep/liligame",
   "license": "UNLICENSED",
