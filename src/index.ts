@@ -4,18 +4,15 @@ import "./components/canvas-confetti"
 import "./components/count-down"
 import { createJoystick } from "./lib/socket"
 import "./styles/index.css"
-const countdown = document.querySelector("count-down")
 
 const confetti = document.querySelector("canvas-confetti")
-const playButton = document.querySelector(".play-button")
-
 document.body.addEventListener("click", ({ clientX, clientY }) => {
   const { innerWidth, innerHeight } = window
   const normalAxes = { x: clientX / innerWidth, y: clientY / innerHeight }
-
   confetti?.setAttribute("origin", JSON.stringify(normalAxes))
 })
 
+const playButton = document.querySelector(".play-button")
 playButton?.addEventListener(
   "click",
   ({ target }) => {
@@ -27,6 +24,7 @@ playButton?.addEventListener(
   { once: true },
 )
 
+const countdown = document.querySelector("count-down")
 countdown?.setAttribute("wait", "3")
 countdown?.addEventListener(
   "TimeIsUp",
