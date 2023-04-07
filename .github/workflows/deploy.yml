@@ -9,6 +9,7 @@ jobs:
   deploy:
     name: Build and upload
     runs-on: ubuntu-latest
+    environment: demoland
     env:
       NODE_ENV: production
     steps:
@@ -43,4 +44,12 @@ jobs:
 
       - run: pnpm run build
 
-      - run: ls
+      - name: SCP upload
+        uses: appleboy/scp-action@master
+        with:
+          host: "demo.land"
+          username: ${{ vars.USER }}
+          password: ${{ secrets.PASS }}
+          port: 22
+          source: "dist/**/*"
+          target: "/home/dcr/boo/"
