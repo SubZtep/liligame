@@ -20,7 +20,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2
         env:
-          NODE_ENV: production
+          NODE_ENV: development
         with:
           version: 8
           run_install: false
