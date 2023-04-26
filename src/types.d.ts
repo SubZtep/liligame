@@ -1,11 +1,10 @@
 /// <reference types="vite/client" />
-declare global {
-  declare namespace NodeJS {
-    export interface ProcessEnv {
-      /** WebSocket server */
-      WS: string
-    }
-  }
+
+interface ImportMetaEnv {
+  /** WebSocket URL with port */
+  readonly VITE_WS: string
 }
 
-export {}
+interface ImportMeta {
+  readonly env: ImportMetaEnv
+}

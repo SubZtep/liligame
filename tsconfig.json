@@ -4,6 +4,7 @@
     "rootDir": "src",
     "target": "ESNext",
     "module": "ESNext",
+    "lib": ["DOM", "WebWorker"],
     "strict": true,
     "skipLibCheck": true,
     "removeComments": true,
