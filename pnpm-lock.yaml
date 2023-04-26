@@ -6,12 +6,15 @@ dependencies:
     version: 16.0.3
 
 devDependencies:
+  '@types/node':
+    specifier: ^18.16.1
+    version: 18.16.1
   typescript:
     specifier: ^5.0.4
     version: 5.0.4
   vite:
     specifier: ^4.3.2
-    version: 4.3.2
+    version: 4.3.2(@types/node@18.16.1)
 
 packages:
 
@@ -213,6 +216,10 @@ packages:
     dev: true
     optional: true
 
+  /@types/node@18.16.1:
+    resolution: {integrity: sha512-DZxSZWXxFfOlx7k7Rv4LAyiMroaxa3Ly/7OOzZO8cBNho0YzAi4qlbrx8W27JGqG57IgR/6J7r+nOJWw6kcvZA==}
+    dev: true
+
   /dotenv@16.0.3:
     resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
     engines: {node: '>=12'}
@@ -294,7 +301,7 @@ packages:
     hasBin: true
     dev: true
 
-  /vite@4.3.2:
+  /vite@4.3.2(@types/node@18.16.1):
     resolution: {integrity: sha512-9R53Mf+TBoXCYejcL+qFbZde+eZveQLDYd9XgULILLC1a5ZwPaqgmdVpL8/uvw2BM/1TzetWjglwm+3RO+xTyw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -319,6 +326,7 @@ packages:
       terser:
         optional: true
     dependencies:
+      '@types/node': 18.16.1
       esbuild: 0.17.18
       postcss: 8.4.23
       rollup: 3.21.0
