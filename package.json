@@ -1,60 +1,22 @@
 {
   "name": "liligame",
-  "version": "1.0.0",
-  "description": "Sandbox for graphics and web sockets",
+  "version": "2.0.0",
+  "description": "Lili game",
   "author": "Andras Serfozo <subztep@gmail.com>",
   "repository": "github:SubZtep/liligame",
   "license": "UNLICENSED",
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "pnpm run \"/^dev:.*/\"",
-    "dev:client": "vite",
-    "dev:server": "nodemon --exec node --loader ts-node/esm -r dotenv/config src/server.ts",
-    "build": "vite build --mode production",
-    "lint": "eslint src",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "vite build",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "canvas-confetti": "^1.6.0",
-    "dotenv": "^16.0.3",
-    "hammerjs": "^2.0.8",
-    "lodash": "^4.17.21",
-    "uuid": "^9.0.0",
-    "vanilla-tilt": "^1.8.0",
-    "ws": "^8.13.0"
+    "dotenv": "^16.0.3"
   },
   "devDependencies": {
-    "@types/canvas-confetti": "^1.6.0",
-    "@types/hammerjs": "^2.0.41",
-    "@types/lodash": "^4.14.192",
-    "@types/matter-js": "^0.18.2",
-    "@types/node": "^18.15.11",
-    "@types/uuid": "^9.0.1",
-    "@types/ws": "^8.5.4",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "eslint": "^8.37.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-compat": "^4.1.4",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-subztep": "^1.0.15",
-    "eslint-plugin-tsdoc": "^0.2.17",
-    "nodemon": "^2.0.22",
-    "prettier": "^2.8.7",
-    "prettier-config-subztep": "^1.0.1",
-    "ts-node": "^10.9.1",
-    "typescript": "^5.0.3",
-    "vite": "^4.2.1",
-    "vite-tsconfig-paths": "^4.0.8",
-    "vitest": "^0.29.8"
-  },
-  "browserslist": [
-    "defaults"
-  ],
-  "engines": {
-    "node": ">=18",
-    "pnpm": ">=8"
+    "typescript": "^5.0.4",
+    "vite": "^4.3.2"
   }
 }

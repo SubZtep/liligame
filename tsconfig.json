@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
-    "module": "ESNext",
-    "moduleResolution": "node",
+    "baseUrl": ".",
+    "rootDir": "src",
     "target": "ESNext",
-    "baseUrl": "src",
-    "rootDir": ".",
-    "outDir": "dist",
-    "lib": ["DOM", "ESNext"],
-    "strict": true,
-    "noImplicitAny": false,
-    "isolatedModules": true,
-    "allowSyntheticDefaultImports": true,
+    "module": "ESNext",
+    "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
-    "paths": {
-      "~/*": ["*"]
-    }
+    "strict": true,
+    "skipLibCheck": true,
+    "removeComments": true
   },
-  "include": ["src/**/*", "games/**/*", "server.ts"]
+  "include": ["src/**/*"]
 }

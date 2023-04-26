@@ -1,1 +1,3 @@
-"prettier-config-subztep"
+semi: false
+arrowParens: avoid
+trailingComma: none
