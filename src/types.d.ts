@@ -2,7 +2,7 @@
 
 interface ImportMetaEnv {
   /** WebSocket URL with port */
-  readonly VITE_WS: string
+  readonly VITE_WSPP: string
 }
 
 interface ImportMeta {
