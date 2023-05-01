@@ -13,10 +13,12 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/node": "^18.16.3",
+    "@types/uuid": "^9.0.1",
     "typescript": "^5.0.4",
     "vite": "^4.3.3"
   }
