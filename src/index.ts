@@ -9,12 +9,9 @@ const { id, color } = player
 onTouch((x, y) => {
   const msg = {
     id,
-    x,
-    y,
     color,
-    width: window.screen.width,
-    height: window.screen.height,
-    pixelRatio: window.devicePixelRatio
+    x: x / window.innerWidth,
+    y: y / window.innerHeight
   }
   socket.send(JSON.stringify(msg))
 })
