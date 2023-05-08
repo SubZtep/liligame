@@ -1,8 +1,10 @@
-import { id, color } from "./app/player"
+import { player } from "./app/player"
 import { onTouch } from "./app/touches"
 import "./style.css"
 
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
+
+const { id, color } = player
 
 onTouch((x, y) => {
   const msg = {
