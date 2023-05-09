@@ -7,7 +7,6 @@ body {
 }
 
 body {
-  touch-action:none;
   overflow: hidden;
   background-color: #000;
   color-scheme: dark light;
