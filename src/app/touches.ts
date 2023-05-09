@@ -1,12 +1,12 @@
-export function onStart(cb: (x: number, y: number) => void) {
+export function onStart(cb: (pos: Position[]) => void) {
   document.body.addEventListener("touchstart", ev => {
-    const { clientX: x, clientY: y } = ev.touches[0]
-    cb(x, y)
+    // const { clientX: x, clientY: y } = ev.touches[0]
+    // cb(x, y)
+    cb(Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY })))
   })
   document.body.addEventListener("mousedown", ev => {
     if (ev.button === 0) {
-      const { clientX: x, clientY: y } = ev
-      cb(x, y)
+      cb([{ x: ev.clientX, y: ev.clientY }])
     }
   })
 }

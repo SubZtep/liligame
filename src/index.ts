@@ -6,8 +6,8 @@ const socket = new WebSocket(import.meta.env.VITE_WSPP)
 const { id, color } = player
 
 type Message =
-  | { cmd: "add"; id: string; color: string; x: number; y: number }
-  // | { cmd: "add"; id: string; color: string; touches: MyTouch[] }
+  // | { cmd: "add"; id: string; color: string; x: number; y: number }
+  | { cmd: "add"; id: string; color: string; poses: Position[] }
   // | { cmd: "move"; id: string; touches: MyTouch[] }
   | { cmd: "remove"; id: string }
 
@@ -15,8 +15,8 @@ const sendMessage = (msg: Message) => {
   socket.send(JSON.stringify(msg))
 }
 
-onStart((x, y) => {
-  sendMessage({ cmd: "add", id, color, x, y })
+onStart(poses => {
+  sendMessage({ cmd: "add", id, color, poses })
 })
 
 // onMove(touches => {
@@ -32,20 +32,21 @@ socket.addEventListener("message", data => {
   let el: HTMLElement | null
   switch (msg.cmd) {
     case "add":
-      el = document.createElement("div")
-      el.dataset.id = msg.id
-      el.style.setProperty("--pos", `translate(${msg.x}px, ${msg.y}px)`)
-      el.style.setProperty("--color", msg.color)
-      el.classList.add("touch")
-      document.body.appendChild(el)
+      msg.poses.forEach(({ x, y }) => {
+        el = document.createElement("div")
+        el.dataset.id = msg.id
+        el.style.setProperty("--pos", `translate(${x}px, ${y}px)`)
+        el.style.setProperty("--color", msg.color)
+        el.classList.add("touch")
+        document.body.appendChild(el)
+      })
       break
     // case "move":
     //   el = document.querySelector(`[data-id="${msg.id}"]`)
     //   el?.style.setProperty("--pos", `translate(${msg.x}px, ${msg.y}px)`)
     //   break
     case "remove":
-      el = document.querySelector(`[data-id="${msg.id}"]`)
-      el && document.body.removeChild(el)
+      document.querySelectorAll(`[data-id="${msg.id}"]`).forEach(el => document.body.removeChild(el))
       break
   }
 })
