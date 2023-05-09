@@ -47,6 +47,8 @@ jobs:
         with:
           name: github-pages
 
+      - run: tar -xf artifact.tar -C ./dist
+
       - run: ls -lah
 
       - run: ls -lah
