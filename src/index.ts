@@ -4,17 +4,27 @@ import "./style.css"
 
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
 
-const { id, color } = player
+onTouch(
+  (x, y) => {
+    const msg = {
+      id: player.id,
+      color: player.color,
+      x: x / window.innerWidth,
+      y: y / window.innerHeight
+    }
+    socket.send(JSON.stringify(msg))
 
-onTouch((x, y) => {
-  const msg = {
-    id,
-    color,
-    x: x / window.innerWidth,
-    y: y / window.innerHeight
+    // const el = createSVGCircle(x, y, color)
+    const el = document.createElement("div")
+    el.style.setProperty("--pos", `translate(${x}px, ${y}px)`)
+    el.style.setProperty("--color", player.color)
+    el.classList.add("touch")
+    return document.body.appendChild(el)
+  },
+  el => {
+    document.body.removeChild(el)
   }
-  socket.send(JSON.stringify(msg))
-})
+)
 
 socket.addEventListener("open", () => {
   console.log("Connected")
