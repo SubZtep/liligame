@@ -1,5 +1,5 @@
 import { player } from "./app/player"
-import { onStart, onMove, onEnd } from "./app/touches"
+import { onStart, onEnd } from "./app/touches"
 import "./style.css"
 
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
@@ -7,7 +7,8 @@ const { id, color } = player
 
 type Message =
   | { cmd: "add"; id: string; color: string; x: number; y: number }
-  | { cmd: "move"; id: string; x: number; y: number }
+  // | { cmd: "add"; id: string; color: string; touches: MyTouch[] }
+  // | { cmd: "move"; id: string; touches: MyTouch[] }
   | { cmd: "remove"; id: string }
 
 const sendMessage = (msg: Message) => {
@@ -18,11 +19,11 @@ onStart((x, y) => {
   sendMessage({ cmd: "add", id, color, x, y })
 })
 
-onMove((x, y) => {
-  sendMessage({ cmd: "move", id, x, y })
-})
+// onMove(touches => {
+//   sendMessage({ cmd: "move", id, touches })
+// })
 
-onEnd((x, y) => {
+onEnd(() => {
   sendMessage({ cmd: "remove", id })
 })
 
@@ -38,10 +39,10 @@ socket.addEventListener("message", data => {
       el.classList.add("touch")
       document.body.appendChild(el)
       break
-    case "move":
-      el = document.querySelector(`[data-id="${msg.id}"]`)
-      el?.style.setProperty("--pos", `translate(${msg.x}px, ${msg.y}px)`)
-      break
+    // case "move":
+    //   el = document.querySelector(`[data-id="${msg.id}"]`)
+    //   el?.style.setProperty("--pos", `translate(${msg.x}px, ${msg.y}px)`)
+    //   break
     case "remove":
       el = document.querySelector(`[data-id="${msg.id}"]`)
       el && document.body.removeChild(el)

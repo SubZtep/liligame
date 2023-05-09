@@ -10,3 +10,5 @@ interface ImportMeta {
 }
 
 type Fn = (...args: any[]) => any
+
+type MyTouch = { x: number; y: number }
