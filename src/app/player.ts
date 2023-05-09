@@ -7,9 +7,14 @@ if (!id) {
 }
 
 let color = window.localStorage.getItem("color")
-if (!color) {
+if (false || !color) {
   color = "#xxxxxx".replace(/x/g, y => ((Math.random() * 16) | 0).toString(16))
   window.localStorage.setItem("color", color)
 }
 
-export const player = { id, color }
+interface Player {
+  readonly id: string
+  color: string
+}
+
+export const player: Player = { id, color }

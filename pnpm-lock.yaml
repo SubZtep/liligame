@@ -10,8 +10,8 @@ dependencies:
 
 devDependencies:
   '@types/node':
-    specifier: ^18.16.3
-    version: 18.16.3
+    specifier: ^20.1.1
+    version: 20.1.1
   '@types/uuid':
     specifier: ^9.0.1
     version: 9.0.1
@@ -19,8 +19,8 @@ devDependencies:
     specifier: ^5.0.4
     version: 5.0.4
   vite:
-    specifier: ^4.3.3
-    version: 4.3.3(@types/node@18.16.3)
+    specifier: ^4.3.5
+    version: 4.3.5(@types/node@20.1.1)
 
 packages:
 
@@ -222,8 +222,8 @@ packages:
     dev: true
     optional: true
 
-  /@types/node@18.16.3:
-    resolution: {integrity: sha512-OPs5WnnT1xkCBiuQrZA4+YAV4HEJejmHneyraIaxsbev5yCEr6KMwINNFP9wQeFIw8FWcoTqF3vQsa5CDaI+8Q==}
+  /@types/node@20.1.1:
+    resolution: {integrity: sha512-uKBEevTNb+l6/aCQaKVnUModfEMjAl98lw2Si9P5y4hLu9tm6AlX2ZIoXZX6Wh9lJueYPrGPKk5WMCNHg/u6/A==}
     dev: true
 
   /@types/uuid@9.0.1:
@@ -292,8 +292,8 @@ packages:
       source-map-js: 1.0.2
     dev: true
 
-  /rollup@3.21.0:
-    resolution: {integrity: sha512-ANPhVcyeHvYdQMUyCbczy33nbLzI7RzrBje4uvNiTDJGIMtlKoOStmympwr9OtS1LZxiDmE2wvxHyVhoLtf1KQ==}
+  /rollup@3.21.5:
+    resolution: {integrity: sha512-a4NTKS4u9PusbUJcfF4IMxuqjFzjm6ifj76P54a7cKnvVzJaG12BLVR+hgU2YDGHzyMMQNxLAZWuALsn8q2oQg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -316,8 +316,8 @@ packages:
     hasBin: true
     dev: false
 
-  /vite@4.3.3(@types/node@18.16.3):
-    resolution: {integrity: sha512-MwFlLBO4udZXd+VBcezo3u8mC77YQk+ik+fbc0GZWGgzfbPP+8Kf0fldhARqvSYmtIWoAJ5BXPClUbMTlqFxrA==}
+  /vite@4.3.5(@types/node@20.1.1):
+    resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
@@ -341,10 +341,10 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 18.16.3
+      '@types/node': 20.1.1
       esbuild: 0.17.18
       postcss: 8.4.23
-      rollup: 3.21.0
+      rollup: 3.21.5
     optionalDependencies:
       fsevents: 2.3.2
     dev: true
