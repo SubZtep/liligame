@@ -1,21 +1,11 @@
-import { v4 as uuidv4 } from "uuid"
+import { v4 as uuid } from "uuid"
 
 let id = window.localStorage.getItem("id")
 if (!id) {
-  id = uuidv4()
+  id = uuid()
   window.localStorage.setItem("id", id)
 }
 
 const color = "#xxxxxx".replace(/x/g, y => ((Math.random() * 16) | 0).toString(16))
-// let color = window.localStorage.getItem("color")
-// if (false || !color) {
-//   color = "#xxxxxx".replace(/x/g, y => ((Math.random() * 16) | 0).toString(16))
-//   window.localStorage.setItem("color", color)
-// }
-
-interface Player {
-  readonly id: string
-  color: string
-}
 
 export const player: Player = { id, color }

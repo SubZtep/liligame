@@ -14,3 +14,8 @@ type Fn = (...args: any[]) => any
 type Position = { x: number; y: number }
 
 type Message = { cmd: "move"; id: string; color: string; poses: Position[] }
+
+interface Player {
+  readonly id: string
+  color: string
+}

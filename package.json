@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "vite --host 0.0.0.0 --port 3000",
     "build": "vite build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "vitest"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
@@ -20,7 +20,9 @@
     "@types/node": "^20.1.1",
     "@types/uuid": "^9.0.1",
     "autoprefixer": "^10.4.14",
+    "happy-dom": "^9.10.9",
     "typescript": "^5.0.4",
-    "vite": "^4.3.5"
+    "vite": "^4.3.5",
+    "vitest": "^0.31.0"
   }
 }
