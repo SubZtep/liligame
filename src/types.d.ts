@@ -12,3 +12,5 @@ interface ImportMeta {
 type Fn = (...args: any[]) => any
 
 type Position = { x: number; y: number }
+
+type Message = { cmd: "move"; id: string; color: string; poses: Position[] }

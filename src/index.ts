@@ -1,14 +1,9 @@
 import { player } from "./app/player"
-import { onMove, onEnd } from "./app/touches"
+import { onMove } from "./app/touches"
 import "./style.css"
 
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
 const { id, color } = player
-
-type Message =
-  | { cmd: "add"; id: string; color: string; poses: Position[] }
-  | { cmd: "move"; id: string; color: string; poses: Position[] }
-  | { cmd: "remove"; id: string }
 
 const sendMessage = (msg: Message) => {
   socket.send(JSON.stringify(msg))
@@ -16,10 +11,6 @@ const sendMessage = (msg: Message) => {
 
 onMove(poses => {
   sendMessage({ cmd: "move", id, color, poses })
-})
-
-onEnd(() => {
-  sendMessage({ cmd: "remove", id })
 })
 
 socket.addEventListener("message", data => {
@@ -35,15 +26,15 @@ socket.addEventListener("message", data => {
           document.body.appendChild(el)
         }
         els = document.querySelectorAll(`[data-id="${msg.id}"]`)
+      } else if (msg.poses.length === 0) {
+        els.forEach(el => document.body.removeChild(el))
+        return
       }
       els.forEach((el, i) => {
-        el.style.top = msg.poses[i] ? `${(msg.poses[i].y * window.innerHeight) - 40}px` : "-200px"
-        el.style.left = msg.poses[i] ? `${(msg.poses[i].x * window.innerWidth) - 40}px` : "-200px"
+        el.style.top = msg.poses[i] ? `${msg.poses[i].y * window.innerHeight - 40}px` : "-200px"
+        el.style.left = msg.poses[i] ? `${msg.poses[i].x * window.innerWidth - 40}px` : "-200px"
         el.style.setProperty("--color", msg.color)
       })
-      break
-    case "remove":
-      document.querySelectorAll(`[data-id="${msg.id}"]`).forEach(el => document.body.removeChild(el))
       break
   }
 })
