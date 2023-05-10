@@ -1,10 +1,10 @@
 # ㄥ丨ㄥ丨Ꮆ卂爪乇
 
-An online mini-game that demonstrates web socket connections by displaying touches on a shared canvas.
+An online mini-game that demonstrates WebSocket [connections](https://github.com/SubZtep/wspp) by displaying touches on a shared canvas.
 
 ## Development
 
-Install packages:
+Clone the project and install dependency packages packages:
 
 ```sh
 npm ci --include=dev
@@ -15,6 +15,8 @@ Start dev server:
 ```sh
 npm run dev
 ```
+
+By default it's connecting to an online instance of the WebSocker [server](https://octopus-app-mkrwn.ondigitalocean.app/).
 
 ## Deployment
 

@@ -34,3 +34,11 @@ socket.addEventListener("message", data => {
       break
   }
 })
+
+socket.addEventListener("open", () => {
+  document.body.style.backgroundColor = "#000"
+})
+
+socket.addEventListener("close", () => {
+  document.body.style.backgroundColor = "#777"
+})
