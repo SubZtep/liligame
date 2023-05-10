@@ -4,7 +4,7 @@ An online mini-game that demonstrates WebSocket [connections](https://github.com
 
 ## Development
 
-Clone the project and install dependency packages packages:
+Clone the project and install dependency packages:
 
 ```sh
 npm ci --include=dev

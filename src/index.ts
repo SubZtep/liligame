@@ -1,3 +1,4 @@
+import { createWebSocketConnection } from "./app/connection"
 import { player } from "./app/player"
 import { onMove } from "./app/touches"
 import "./style.css"
@@ -5,10 +6,10 @@ import "./style.css"
 const { id, color } = player
 document.body.style.setProperty("--color", color)
 
-const socket = new WebSocket(import.meta.env.VITE_WSPP)
+const { socket, sendMessage } = createWebSocketConnection()
 
 onMove(poses => {
-  socket.send(JSON.stringify({ cmd: "move", id, color, poses } as Message))
+  sendMessage({ cmd: "move", id, color, poses })
 })
 
 socket.addEventListener("message", data => {
@@ -35,12 +36,4 @@ socket.addEventListener("message", data => {
       })
       break
   }
-})
-
-socket.addEventListener("open", () => {
-  document.body.classList.add("connected")
-})
-
-socket.addEventListener("close", () => {
-  document.body.classList.remove("connected")
 })

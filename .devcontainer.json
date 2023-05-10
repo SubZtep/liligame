@@ -1,12 +1,12 @@
 {
-  "name": "wspp-dev",
+  "name": "liligame-dev",
   "image": "mcr.microsoft.com/vscode/devcontainers/javascript-node",
-  "forwardPorts": [1337],
+  "forwardPorts": [3000],
   "portsAttributes": {
-    "1337": {
-      "label": "WebSocket server"
+    "3000": {
+      "label": "Vite server"
     }
   },
-  "onCreateCommand": "npm install && npm run dev",
+  "onCreateCommand": "npm ci --include=dev && npm run dev",
   "postAttachCommand": ""
 }
