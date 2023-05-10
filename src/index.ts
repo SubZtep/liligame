@@ -55,8 +55,8 @@ socket.addEventListener("message", data => {
         els = document.querySelectorAll(`[data-id="${msg.id}"]`)
       }
       els.forEach((el, i) => {
-        el.style.setProperty("--x", msg.poses[i] ? `${msg.poses[i].x}px` : "-200px")
-        el.style.setProperty("--y", msg.poses[i] ? `${msg.poses[i].y}px` : "-200px")
+        el.style.top = msg.poses[i] ? `${msg.poses[i].y}px` : "-200px"
+        el.style.left = msg.poses[i] ? `${msg.poses[i].x}px` : "-200px"
       })
       break
     case "remove":
