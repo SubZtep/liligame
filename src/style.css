@@ -6,6 +6,8 @@ body {
   height: 100%;
 }
 
+/* kocka meret, gradient az aktualis szinnel a megmaradt reszen */
+
 body {
   overflow: hidden;
   background-color: #000;
@@ -27,19 +29,19 @@ body {
 
 @keyframes pulse {
   0% {
-    transform: var(--pos) translate(-50%, -50%) scale(0.95);
+    transform: translate(var(--x), var(--y)) translate(-50%, -50%) scale(0.95);
     box-shadow: 0 0 0 0 var(--color), inset -10px -10px 15px rgba(0, 0, 0, 0.3),
       inset 10px 10px 15px rgba(70, 70, 70, 0.12);
   }
 
   70% {
-    transform: var(--pos) translate(-50%, -50%) scale(1);
+    transform: translate(var(--x), var(--y)) translate(-50%, -50%) scale(1);
     box-shadow: 0 0 0 10px rgba(0, 0, 0, 0), inset -10px -10px 15px rgba(0, 0, 0, 0.3),
       inset 10px 10px 15px rgba(70, 70, 70, 0.12);
   }
 
   100% {
-    transform: var(--pos) translate(-50%, -50%) scale(0.95);
+    transform: translate(var(--x), var(--y)) translate(-50%, -50%) scale(0.95);
     box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.5), inset -10px -10px 15px rgba(0, 0, 0, 0.3),
       inset 10px 10px 15px rgba(70, 70, 70, 0.12);
   }
