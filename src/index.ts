@@ -48,7 +48,6 @@ socket.addEventListener("message", data => {
         for (let i = 0; i < 10; i++) {
           const el = document.createElement("div")
           el.dataset.id = msg.id
-          el.style.setProperty("--color", msg.color)
           el.classList.add("touch")
           document.body.appendChild(el)
         }
@@ -57,6 +56,7 @@ socket.addEventListener("message", data => {
       els.forEach((el, i) => {
         el.style.top = msg.poses[i] ? `${msg.poses[i].y}px` : "-200px"
         el.style.left = msg.poses[i] ? `${msg.poses[i].x}px` : "-200px"
+        el.style.setProperty("--color", msg.color)
       })
       break
     case "remove":
