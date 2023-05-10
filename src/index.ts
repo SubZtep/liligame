@@ -2,8 +2,10 @@ import { player } from "./app/player"
 import { onMove } from "./app/touches"
 import "./style.css"
 
-const socket = new WebSocket(import.meta.env.VITE_WSPP)
 const { id, color } = player
+document.body.style.setProperty("--color", color)
+
+const socket = new WebSocket(import.meta.env.VITE_WSPP)
 
 onMove(poses => {
   socket.send(JSON.stringify({ cmd: "move", id, color, poses } as Message))
