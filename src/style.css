@@ -22,6 +22,7 @@ body {
   background-color: var(--color);
   mix-blend-mode: difference;
   animation: pulse 1s infinite;
+  will-change: transform;
 }
 
 @keyframes pulse {
