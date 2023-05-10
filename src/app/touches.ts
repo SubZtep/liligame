@@ -14,8 +14,6 @@ export function onMove(cb: (cb: Position[]) => void) {
   document.body.addEventListener("mousedown", ev => {
     if (ev.buttons === 1) {
       touches = [toPosition(ev)]
-    } else {
-      touches = []
     }
   })
 
@@ -26,14 +24,13 @@ export function onMove(cb: (cb: Position[]) => void) {
   document.body.addEventListener("mousemove", ev => {
     if (ev.buttons === 1) {
       touches = [toPosition(ev)]
-    } else {
-      touches = []
     }
   })
 
   document.body.addEventListener("touchend", ev => {
     touches = Array.from(ev.touches).map(toPosition)
   })
+
   document.body.addEventListener("mouseup", ev => {
     if (ev.button === 0) {
       touches = []

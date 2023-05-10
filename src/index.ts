@@ -40,5 +40,5 @@ socket.addEventListener("open", () => {
 })
 
 socket.addEventListener("close", () => {
-  document.body.style.backgroundColor = "#777"
+  document.body.style.backgroundColor = "#333"
 })
