@@ -4,7 +4,10 @@ let lastTouches: Position[] = []
 export function onMove(cb: (cb: Position[]) => void) {
   document.body.addEventListener("touchstart", ev => {
     cb(Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY })))
-    touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
+    touches = Array.from(ev.touches).map(touch => ({
+      x: touch.clientX / window.innerHeight,
+      y: touch.clientY / window.innerHeight
+    }))
   })
 
   document.body.addEventListener("mousedown", ev => {
@@ -19,7 +22,10 @@ export function onMove(cb: (cb: Position[]) => void) {
     "touchmove",
     ev => {
       ev.preventDefault()
-      touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
+      touches = Array.from(ev.touches).map(touch => ({
+        x: touch.clientX / window.innerHeight,
+        y: touch.clientY / window.innerHeight
+      }))
     },
     { passive: false }
   )
