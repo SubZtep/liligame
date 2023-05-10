@@ -1,27 +1,26 @@
 import { player } from "./app/player"
-import { onStart, onEnd } from "./app/touches"
+import { onStart, onMove, onEnd } from "./app/touches"
 import "./style.css"
 
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
 const { id, color } = player
 
 type Message =
-  // | { cmd: "add"; id: string; color: string; x: number; y: number }
   | { cmd: "add"; id: string; color: string; poses: Position[] }
-  // | { cmd: "move"; id: string; touches: MyTouch[] }
+  | { cmd: "move"; id: string; color: string; poses: Position[] }
   | { cmd: "remove"; id: string }
 
 const sendMessage = (msg: Message) => {
   socket.send(JSON.stringify(msg))
 }
 
-onStart(poses => {
-  sendMessage({ cmd: "add", id, color, poses })
-})
-
-// onMove(touches => {
-//   sendMessage({ cmd: "move", id, touches })
+// onStart(poses => {
+//   sendMessage({ cmd: "move", id, color, poses })
 // })
+
+onMove(poses => {
+  sendMessage({ cmd: "move", id, color, poses })
+})
 
 onEnd(() => {
   sendMessage({ cmd: "remove", id })
@@ -29,22 +28,39 @@ onEnd(() => {
 
 socket.addEventListener("message", data => {
   const msg = JSON.parse(data.data) as Message
-  let el: HTMLElement | null
   switch (msg.cmd) {
     case "add":
-      msg.poses.forEach(({ x, y }) => {
-        el = document.createElement("div")
+      for (let i = 0; i < 10; i++) {
+        const el = document.createElement("div")
         el.dataset.id = msg.id
-        el.style.setProperty("--pos", `translate(${x}px, ${y}px)`)
+        el.style.setProperty(
+          "--pos",
+          msg.poses[i] ? `translate(${msg.poses[i].x}px, ${msg.poses[i].y}px)` : "translate(-200px, -200px)"
+        )
         el.style.setProperty("--color", msg.color)
         el.classList.add("touch")
         document.body.appendChild(el)
+      }
+      break
+    case "move":
+      let els = document.querySelectorAll<HTMLElement>(`[data-id="${msg.id}"]`)
+      if (els.length === 0) {
+        for (let i = 0; i < 10; i++) {
+          const el = document.createElement("div")
+          el.dataset.id = msg.id
+          el.classList.add("touch")
+          document.body.appendChild(el)
+        }
+        els = document.querySelectorAll(`[data-id="${msg.id}"]`)
+      }
+      els.forEach((el, i) => {
+        el.style.setProperty(
+          "--pos",
+          msg.poses[i] ? `translate(${msg.poses[i].x}px, ${msg.poses[i].y}px)` : "translate(-200px, -200px)"
+        )
+        el.style.setProperty("--color", msg.color)
       })
       break
-    // case "move":
-    //   el = document.querySelector(`[data-id="${msg.id}"]`)
-    //   el?.style.setProperty("--pos", `translate(${msg.x}px, ${msg.y}px)`)
-    //   break
     case "remove":
       document.querySelectorAll(`[data-id="${msg.id}"]`).forEach(el => document.body.removeChild(el))
       break

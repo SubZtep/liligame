@@ -1,3 +1,6 @@
+let touches: Position[] = []
+let lastTouches: Position[] = []
+
 export function onStart(cb: (pos: Position[]) => void) {
   document.body.addEventListener("touchstart", ev => {
     // const { clientX: x, clientY: y } = ev.touches[0]
@@ -11,53 +14,57 @@ export function onStart(cb: (pos: Position[]) => void) {
   })
 }
 
-// export function onMove(cb: (cb: MyTouch[]) => void) {
-//   let touches: MyTouch[] = []
-//   let pause = false
-//   document.body.addEventListener(
-//     "touchmove",
-//     ev => {
-//       ev.preventDefault()
-//       touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
-//     },
-//     { passive: false }
-//   )
-//   document.body.addEventListener(
-//     "mousemove",
-//     ev => {
-//       ev.preventDefault()
-//       if (ev.button === 0) {
-//         const { clientX: x, clientY: y } = ev
-//         cb([x, y])
-//       }
-//     },
-//     { passive: false }
-//   )
-//   setInterval(() => {
-//     if (touches.length === 0) {
-//       if (pause) {
-//         return
-//       } else {
-//         pause = true
-//       }
-//     } else {
-//       pause = false
-//     }
+export function onMove(cb: (cb: Position[]) => void) {
+  document.body.addEventListener("touchstart", ev => {
+    cb(Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY })))
+    touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
+  })
 
-//     if (touches.length > 0) {
-//       const { x, y } = touches[0]
-//       cb(x, y)
-//     }
-//   }, 15)
-// }
+  document.body.addEventListener("mousedown", ev => {
+    if (ev.buttons === 1) {
+      touches = [{ x: ev.clientX, y: ev.clientY }]
+    } else {
+      touches = []
+    }
+  })
+
+  document.body.addEventListener(
+    "touchmove",
+    ev => {
+      ev.preventDefault()
+      touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
+    },
+    { passive: false }
+  )
+
+  document.body.addEventListener(
+    "mousemove",
+    ev => {
+      ev.preventDefault()
+      if (ev.buttons === 1) {
+        touches = [{ x: ev.clientX, y: ev.clientY }]
+      } else {
+        touches = []
+      }
+    },
+    { passive: false }
+  )
+
+  setInterval(() => {
+    if (JSON.stringify(touches) !== JSON.stringify(lastTouches)) {
+      cb(touches)
+      lastTouches = touches
+    }
+  }, 15)
+}
 
 export function onEnd(cb: Fn) {
   document.body.addEventListener("touchend", ev => {
-    cb()
+    touches = Array.from(ev.touches).map(touch => ({ x: touch.clientX, y: touch.clientY }))
   })
   document.body.addEventListener("mouseup", ev => {
     if (ev.button === 0) {
-      cb()
+      cb([])
     }
   })
 }
