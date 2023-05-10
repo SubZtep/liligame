@@ -5,12 +5,8 @@ import "./style.css"
 const socket = new WebSocket(import.meta.env.VITE_WSPP)
 const { id, color } = player
 
-const sendMessage = (msg: Message) => {
-  socket.send(JSON.stringify(msg))
-}
-
 onMove(poses => {
-  sendMessage({ cmd: "move", id, color, poses })
+  socket.send(JSON.stringify({ cmd: "move", id, color, poses } as Message))
 })
 
 socket.addEventListener("message", data => {
@@ -38,12 +34,3 @@ socket.addEventListener("message", data => {
       break
   }
 })
-
-// socket.addEventListener("open", ev => {
-//   console.log("Connected", ev)
-// })
-// socket.addEventListener("close", ev => {
-//   console.log("Disconnected", ev)
-// })
-
-export {}
