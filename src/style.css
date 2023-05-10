@@ -12,6 +12,12 @@ body {
   color-scheme: dark light;
   touch-action: none;
   user-select: none;
+  cursor: wait;
+}
+
+.connected {
+  background-color: #000;
+  cursor: grab;
 }
 
 .touch {
@@ -24,6 +30,7 @@ body {
   background-color: var(--color);
   mix-blend-mode: difference;
   animation: pulse 1s infinite;
+  cursor: grabbing;
 }
 
 @keyframes pulse {

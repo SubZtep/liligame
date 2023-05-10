@@ -36,9 +36,9 @@ socket.addEventListener("message", data => {
 })
 
 socket.addEventListener("open", () => {
-  document.body.style.backgroundColor = "#000"
+  document.body.classList.add("connected")
 })
 
 socket.addEventListener("close", () => {
-  document.body.style.backgroundColor = "#333"
+  document.body.classList.remove("connected")
 })
