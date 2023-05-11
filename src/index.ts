@@ -4,15 +4,14 @@ import { onMove } from "./app/touches"
 import "./style.css"
 
 document.body.style.setProperty("--color", player.color)
-
 const { socket, sendMessage } = createWebSocketConnection()
 
 onMove(poses => {
   sendMessage({ id: player.id, color: player.color, poses })
 })
 
-socket.addEventListener("message", data => {
-  const { id, color, poses } = JSON.parse(data.data) as Message
+socket.addEventListener("message", ({ data }) => {
+  const { id, color, poses } = JSON.parse(data) as Message
   let els = document.querySelectorAll<HTMLElement>(`[data-id="${id}"]`)
 
   if (els.length === 0) {
